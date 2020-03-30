@@ -1,0 +1,11 @@
+ClienteFILA.c onde fica a main, onde o "cliente utiliza", ela possui só um menu onde o usuário escolher as funções a serem realizadas;
+ClienteFILA.c importa ClienteFILA.h
+-------------
+ClienteFILA.h possui a declaração da função menu e a estrutura info, ela importa tda_FES.h
+-------------
+tdaFES.h possui a estrutura do descritor e algumas declarações de funções
+-------------
+tda_FES.c possui as funções em sí
+-------------
+tdaFESpriv.h possui a estrutura descFES descritor e importa a tdaFES.h que possui as funções
+------------

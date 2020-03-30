@@ -1,0 +1,9 @@
+O que são TDAs?
+	Abstração e encapsulamento dos dados.
+	TDAs se comunicam através de uma interface.
+Por que usar TDA?
+	Para desenvolver estruturas independente das aplicações específicas.
+Como vamos implementar?
+	Basicamente teremos: um módulo de aplicação visivel ao usuário;
+	Uma interface do painel;
+	E a implementação da interface;	

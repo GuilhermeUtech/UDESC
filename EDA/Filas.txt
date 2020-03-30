@@ -1,0 +1,85 @@
+Filas: Ordenado por FIFO (first in first out, tipo a fila do RU)
+Manipularemos a frente e a cauda, inserção na cauda e remoção na frente
+Utilizaremos a mesma arquitetura TDA que em pilhas.
+
+1) Essa é a FES -> Fila estática Simples
+	typedef struct {
+	void **vetFila;
+	int comprimentoDoVetor;
+	int frente; /*indexa a saída da fila */
+	int cauda; /*indexa a entrada na fila */
+	int tamInfo;
+ 	} Fila;	
+
+-> Inicialização: cauda -1 e frente = 0;
+-> N de elementos: cauda-frente+1;
+-> Fila vazia: cauda < frente;
+-> Fila cheia: cauda==comprimentoDoVetor-1;
+-> Inserção incrementa cauda
+-> Remoção incrementa frente
+
+2) FEM-1 -> Fila estática com movimentação de dados a cada remoção
+	Para evitar tretas da FES, cada remoção move todos os elementos em direção do inicio do vetor
+	
+	for (i=0; i < tamanhoFila; i++)
+ 	memcpy(p->vet[i], p->vet[i+1], p->tamInfo);
+	p->cauda = p->cauda-1;
+ 	p->frente = 0;
+
+-> Inserções incrementam a cauda
+-> Porém a frente fica fica no inicio do vetor (índice 0)
+-> Tamanho da fila: cauda-frente=cauda-0+1=cauda+1
+-> Inicialização: cauda = -1 e frente = 0
+-> Fila vazia: cauda<frente
+->Fila cheira: cauda = comprimentodoVetor+1
+ 		***A FEM-1 É MUITO CUSTOSA COMPUTACIONALMENTE***
+3) Para evitar esse custo usaremos a FEM-2 que basicamente realiza a operação de deslocamento quando for necessário
+
+	Se (cauda ==comprimentoDoVetor-1)
+		tamanhoDaFila = cauda - frente + 1;
+	Se(tamanhoDaFila < comprimentoDoVetor)
+		for(i=0; i < tamanhoDaFila; i++)
+ 			memcpy(p->vet[i], p->vet[i+frente], p->tamInfo);
+			p->cauda -= p->frente;
+ 			p->frente = 0;
+ 			inserção no final da fila;
+ 	Senão
+ 		FILA realmente cheia;
+
+ 	Senão inserção no final da fila;
+
+4) FEC -> fila circular
+	Pense em um vetor circular, essa é a FEC	
+	Estrutura Fila Estática Circular:
+	
+	typedef struct {
+ 	void **vetFila;
+ 	int comprimentoDoVetor;
+ 	int frente; /* indexa o início da Fila */
+ 	int cauda; /*indexa o final da Fila */
+ 	int tamanhoDaFila; /*num de elementos*/
+	int tamInfo;
+ } Fila;
+
+inserção( )
+SE (tamanho atual da fila < tamanho do vetor)
+ /* há espaço no início do vetor */
+ SE (cauda = = tamanho do vetor-1)
+ /* utilize o aspecto circular */
+cauda = 0;
+ vetor[cauda] = novo;
+ SENÃO
+ vetor[++cauda] = novo
+ tamanho atual da fila ++
+SENÃO
+ fila realmente cheia!!
+
+Remoção( )
+SE(tamanho da fila = = 0)
+fila vazia
+ SENÃO
+ SE (frente = = tamanho do vetor-1)
+ frente = 0
+SENÃO
+ frente++
+tamanho da fila - -

@@ -1,0 +1,24 @@
+Fila de prioridade:
+Uma fila normal que permite a saída de um elemento que não siga a ideia de FIFO;
+O primeiro elemento não será necessáriamente o primeiro a sair;
+Como implementar?
+Analisar certos atributos de quem (ou o que) vai entrar;
+
+	struct{
+	-elementos
+	-tem alguns campos a ser avaliado préviamente a inserção
+	}nomeStruct;
+
+Primeira inserção: 
+	se está vazia é trivial a inserção;
+	se não está vazia, deve-se avaliar os atributos em relação aos valores dos atributos de 	quem está na fila;
+
+Segunda inserção: 
+	Ex: idade: Basta comparar as idades e utilizar da regra prevista no sistema;
+	Atenção: Se empatarem vale FIFO, o que chegou primeiro fica na frente;
+	
+N inserções:
+	Consulta os atributos de todos e define a posição do novo atributo a entrar;
+	Laço de repetição procurando onde idade >= a ele e o de trás <= a ele, lembrar de cuidar 	 com idades iguais;
+
+Como implementar sem quebrar o encapsulamento TDA??
